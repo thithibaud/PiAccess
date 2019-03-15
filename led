@@ -29,12 +29,12 @@ def allumer_vert():
         
     GPIO.cleanup()
     
+    
+    
 
 def allumer_rouge():
     GPIO.setmode(GPIO.BCM)   # mode de numérotation des pins
     GPIO.setup(18,GPIO.OUT)  # la pin 18 réglée en sortie (output)
-
-
 
     led.set_color( ROUGE )          # Affichage d'une couleur prédéfinie
         GPIO.output(18,GPIO.HIGH)   # sortie au niveau logique haut (3.3 V)
@@ -42,6 +42,8 @@ def allumer_rouge():
         GPIO.output(18,GPIO.LOW)
         
     GPIO.cleanup()
+    
+    
 
 
 def clignoter_orange():
@@ -60,5 +62,4 @@ def clignoter_orange():
             time.sleep(0.5)             # on ne change rien pendant 1 seconde
             second_time = time.time()
         
-
     GPIO.cleanup()
