@@ -18,7 +18,10 @@ def generation_mdp():
                 compteur = compteur + 1
                 
         pic = pyqrcode.create(code_utilisateur)
-        pic.svg('qrcode.svg', scale=8)
+        pic.svg(code_utilisateur +'.png', scale=8)
+        f = open("codes.txt", "a")
+        f.write(code_utilisateur + '\n')
+        f.close()
         
         
 
