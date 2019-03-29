@@ -1,0 +1,65 @@
+"""si aucun code QR n’a été reconnu, la LED clignote 3 secondes en orange.
+    si un code QR est reconnu mais qu’il n’est pas valide , la LED s’allume 3 secondes en
+    rouge.
+    si un code QR est reconnu et valide, la LED s’allume 10s en vert."""
+
+# Une LED branchée à la pin 18 clignote
+from pyb import Timer
+from time import sleep
+import RPi.GPIO as GPIO  # bibliothèque pour utiliser les GPIO
+import time              # bibliothèque pour gestion du temps
+
+
+# Definir des couleurs (valeur RGB (red, green, blue) 
+ROUGE  = (255, 0, 0) 
+ORANGE = (83, 4, 0) 
+VERT   = (0, 255, 0)
+BLANC  = (255, 255, 255) 
+NOIR   = (0, 0, 0)
+
+
+def allumer_vert():
+    GPIO.setmode(GPIO.BCM)   # mode de numérotation des pins
+    GPIO.setup(18,GPIO.OUT)  # la pin 18 réglée en sortie (output)
+
+    led.set_color( VERT )           # Affichage d'une couleur prédéfinie
+        GPIO.output(18,GPIO.HIGH)   # sortie au niveau logique haut (3.3 V)
+        time.sleep(10)
+        GPIO.output(18,GPIO.LOW)
+        
+    GPIO.cleanup()
+    
+    
+    
+
+def allumer_rouge():
+    GPIO.setmode(GPIO.BCM)   # mode de numérotation des pins
+    GPIO.setup(18,GPIO.OUT)  # la pin 18 réglée en sortie (output)
+
+    led.set_color( ROUGE )          # Affichage d'une couleur prédéfinie
+        GPIO.output(18,GPIO.HIGH)   # sortie au niveau logique haut (3.3 V)
+        time.sleep(3)
+        GPIO.output(18,GPIO.LOW)
+        
+    GPIO.cleanup()
+    
+    
+
+
+def clignoter_orange():
+    GPIO.setmode(GPIO.BCM)   # mode de numérotation des pins
+    GPIO.setup(18,GPIO.OUT)  # la pin 18 réglée en sortie (output)
+
+    # Boucle
+    first_time = time.time()
+    duration = second_time - first_time
+
+    while duration < 3:
+        led.set_color( ORANGE )         # Affichage d'une couleur prédéfinie
+            GPIO.output(18,GPIO.HIGH)   # sortie au niveau logique haut (3.3 V)
+            time.sleep(0.5)             # on ne change rien pendant 1 seconde
+            GPIO.output(18,GPIO.LOW)    # sortie au niveau logique bas (0 V)
+            time.sleep(0.5)             # on ne change rien pendant 1 seconde
+            second_time = time.time()
+        
+    GPIO.cleanup()
